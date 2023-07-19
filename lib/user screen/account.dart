@@ -1,10 +1,8 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
 import 'package:zamjy/utils/colors.dart';
 
 enum Gender { male, female }
