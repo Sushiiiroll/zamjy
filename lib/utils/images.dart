@@ -6,4 +6,6 @@ class Assets {
   static String sisig = "${foodPath}sisig.png";
   static String ramen = "${foodPath}ramen.png";
   static String cart = "${foodPath}cart.png";
+  static String comboA = "${foodPath}comboa.png";
+  static String comboB = "${foodPath}combo_meal.png";
 }

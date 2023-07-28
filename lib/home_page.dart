@@ -70,15 +70,15 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 210,
-                child: ListView.builder(
-                    itemCount: 5,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return const BestDealsWidget();
-                    }),
-              )
+              // SizedBox(
+              //   height: 210,
+              //   child: ListView.builder(
+              //       itemCount: 5,
+              //       scrollDirection: Axis.horizontal,
+              //       itemBuilder: (context, index) {
+              //         return const BestDealsWidget();
+              //       }),
+              // )
             ],
           ),
           const SizedBox(

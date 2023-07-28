@@ -45,7 +45,10 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          _buildGridView()
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: _buildGridView(),
+          )
         ],
       ),
     );
@@ -54,20 +57,17 @@ class _HomePageState extends State<HomePage> {
   SizedBox _buildGridView() {
     return SizedBox(
       height: Get.height / 2.2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              childAspectRatio: 3 / 3,
-              crossAxisSpacing: 50,
-              mainAxisSpacing: 40),
-          itemCount: allproducts.length,
-          itemBuilder: (context, index) {
-            return _buildProductLength(index);
-          },
-        ),
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 3 / 3,
+            crossAxisSpacing: 50,
+            mainAxisSpacing: 40),
+        itemCount: allproducts.length,
+        itemBuilder: (context, index) {
+          return _buildProductLength(index);
+        },
       ),
     );
   }
@@ -131,10 +131,10 @@ class _HomePageState extends State<HomePage> {
     return SizedBox(
       height: 210,
       child: ListView.builder(
-          itemCount: 5,
+          itemCount: bestdeals.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return const BestDealsWidget();
+            return BestDealsWidget(bestdeals: bestdeals[index]);
           }),
     );
   }
