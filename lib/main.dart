@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zamjy/btm_bar.dart';
-import 'package:zamjy/home_page.dart';
 
 void main() {
   runApp(const MyApp());

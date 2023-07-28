@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:zamjy/utils/data_builder.dart';
 import 'package:zamjy/utils/images.dart';
 
-import 'Widgets/best_deals_widget.dart';
+import '../Widgets/best_deals_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

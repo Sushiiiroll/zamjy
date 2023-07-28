@@ -1,9 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
+
+import 'package:zamjy/utils/colors.dart';
 
 enum Gender { male, female }
 
@@ -18,8 +18,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
   final TextEditingController dateinput = TextEditingController();
-  Gender? gender = Gender.male;
-
+  bool isTap = true;
+  String? gender;
   @override
   void initState() {
     dateinput.text = "";
@@ -32,265 +32,184 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        centerTitle: true,
-        backgroundColor: Colors.grey,
-        title: const Text(
-          'My Account',
-          style: TextStyle(
-            fontSize: 25,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      body: Center(
-        child: SizedBox(
-          width: 300,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: TextField(
-                    controller: fnameController,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11),
-                        borderSide: const BorderSide(
-                          color: Colors.teal,
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11),
-                        borderSide: const BorderSide(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      labelText: 'First Name',
-                      hintText: 'Enter Your First Name',
-                      labelStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.teal,
-                      ),
-                      hintStyle: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      suffixIcon: fnameController.text.isEmpty
-                          ? Container(width: 0)
-                          : IconButton(
-                              icon: const Icon(EvaIcons.close),
-                              onPressed: () => fnameController.clear(),
-                            ),
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 11,
-                ),
-                TextField(
-                  controller: lnameController,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(
-                        color: Colors.teal,
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    labelText: 'Last Name',
-                    hintText: 'Enter Your Last Name',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.teal,
-                    ),
-                    hintStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    suffixIcon: fnameController.text.isEmpty
-                        ? Container(width: 0)
-                        : IconButton(
-                            icon: const Icon(EvaIcons.close),
-                            onPressed: () => fnameController.clear(),
-                          ),
-                  ),
-                ),
-                Container(
-                  height: 11,
-                ),
-                TextField(
-                  readOnly: true,
-                  controller: dateinput,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(
-                        color: Colors.teal,
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    labelText: 'Birthdate',
-                    hintText: "Enter Birthdate",
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.teal,
-                    ),
-                    hintStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    prefixIcon: IconButton(
-                      icon: const Icon(
-                        CupertinoIcons.calendar,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1980),
-                          lastDate: DateTime(2024),
-                        );
-
-                        if (pickedDate != null) {
-                          print(pickedDate);
-                          String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-                          print(formattedDate);
-
-                          setState(() {
-                            dateinput.text = formattedDate;
-                          });
-                        } else {
-                          print("Date is not selected");
-                        }
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 11,
-                ),
-                TextField(
-                  controller: lnameController,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(
-                        color: Colors.teal,
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(11),
-                      borderSide: const BorderSide(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    labelText: 'fixed email',
-                    hintText: 'Email',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.teal,
-                    ),
-                    hintStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    suffixIcon: fnameController.text.isEmpty
-                        ? Container(width: 0)
-                        : IconButton(
-                            icon: const Icon(EvaIcons.close),
-                            onPressed: () => fnameController.clear(),
-                          ),
-                  ),
-                ),
-                Container(
-                  height: 11,
-                ),
-                const Text(
-                  "Gender",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(0),
-                        title: const Text("Male"),
-                        leading: Radio<Gender>(
-                          value: Gender.male,
-                          groupValue: gender,
-                          onChanged: (Gender? value) {
-                            setState(() {
-                              gender = value.toString() as Gender?;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(0),
-                    title: const Text("Female"),
-                    leading: Radio<Gender>(
-                      value: Gender.female,
-                      groupValue: gender,
-                      onChanged: (Gender? value) {
-                        setState(() {
-                          gender = value.toString() as Gender?;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                  ),
-                  child: const Text(
-                    'SAVE',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
+        appBar: AppBar(
+          elevation: 1,
+          centerTitle: true,
+          title: const Text(
+            'My Account',
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
+        body: SingleChildScrollView(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 50),
+            _buildFirstNameText(),
+            _buildFirstName(),
+            _buildLastNameText(),
+            _buildLastName(),
+            _buildEmailText(),
+            _buildEmail(),
+            _buildGenderText(),
+            _buildGenderOption(),
+            const SizedBox(height: 50),
+            Center(
+                child: SizedBox(
+              height: Get.height / 15,
+              width: Get.width / 2.5,
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: ColorPalette.elevatedButtonColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5))),
+                  onPressed: () {},
+                  child: const Text(
+                    "SAVE",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  )),
+            ))
+          ],
+        )));
+  }
+
+  Row _buildGenderOption() {
+    return Row(
+      children: [
+        Expanded(
+          child: RadioListTile(
+            title: const Text("Male"),
+            value: "male",
+            groupValue: gender,
+            onChanged: (value) {
+              setState(() {
+                gender = value.toString();
+              });
+            },
+          ),
+        ),
+        Expanded(
+          child: RadioListTile(
+            title: const Text("Female"),
+            value: "female",
+            groupValue: gender,
+            onChanged: (value) {
+              setState(() {
+                gender = value.toString();
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Padding _buildGenderText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Text(
+        "Gender",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+
+  Padding _buildEmail() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        controller: lnameController,
+        keyboardType: TextInputType.emailAddress,
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: isTap != true ? Colors.grey : Colors.black)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.grey))),
+      ),
+    );
+  }
+
+  Padding _buildEmailText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Text(
+        "Email",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+
+  Padding _buildLastName() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        controller: lnameController,
+        keyboardType: TextInputType.name,
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: isTap != true ? Colors.grey : Colors.black)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.grey))),
+      ),
+    );
+  }
+
+  Padding _buildLastNameText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Text(
+        "Last Name",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+
+  Padding _buildFirstNameText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Text(
+        "First Name",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+
+  Padding _buildFirstName() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        controller: fnameController,
+        keyboardType: TextInputType.name,
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: isTap != true ? Colors.grey : Colors.black)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.grey))),
       ),
     );
   }

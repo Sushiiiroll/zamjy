@@ -160,16 +160,13 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         );
 
                         if (pickedTime != null) {
-                          print(pickedTime.format(context)); //output 10:51 PM
                           DateTime parsedTime = DateFormat.jm()
+                              // ignore: use_build_context_synchronously
                               .parse(pickedTime.format(context).toString());
                           //converting to DateTime so that we can further format on different pattern.
-                          print(parsedTime); //output 1970-01-01 22:53:00.000
                           String formattedTime =
                               DateFormat('HH:mm').format(parsedTime);
-                          print(formattedTime); //output 14:59:00
                           //DateFormat() is from intl package, you can format the time on any pattern you need.
-
                           setState(() {
                             timeinput.text =
                                 formattedTime; //set the value of text field.
@@ -184,8 +181,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 Container(
                   height: 11,
                 ),
-                Column(
-                  children: const [
+                const Column(
+                  children: [
                     Text(
                       "GCASH No: 09123478993",
                       style: TextStyle(

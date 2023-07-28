@@ -41,7 +41,7 @@ class _UserScreenState extends State<UserScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
+              const Text(
                 'email@gmail.com',
                 style: TextStyle(
                   fontSize: 15,
@@ -86,7 +86,7 @@ class _UserScreenState extends State<UserScreen> {
                   'My Address',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text('Subtitle here'),
+                subtitle: const Text('Subtitle here'),
                 leading: const Icon(EvaIcons.pinOutline),
                 trailing: const Icon(EvaIcons.arrowForwardOutline),
                 onTap: () {},
