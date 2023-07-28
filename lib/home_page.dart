@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zamjy/btm_bar.dart';
 
 import 'Widgets/best_deals_widget.dart';
-import 'Widgets/items_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    print("current height is " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
       backgroundColor: Colors.white70,
       body: ListView(
@@ -79,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: 5,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return BestDealsWidget();
+                      return const BestDealsWidget();
                     }),
               )
             ],
@@ -87,10 +84,10 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              children: const [
+              children: [
                 Text(
                   'ALL PRODUCTS',
                   style: TextStyle(

@@ -14,9 +14,7 @@ class CategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
-      onTap: () {
-        print('Category Pressed');
-      },
+      onTap: () {},
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white10,
