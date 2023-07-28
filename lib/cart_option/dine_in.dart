@@ -1,11 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:zamjy/cart_option/delivery_screen.dart';
-import 'package:zamjy/cart_option/dine_in.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+class DineInScreen extends StatelessWidget {
+  const DineInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +13,7 @@ class CartScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey,
         title: const Text(
-          'MY CART',
+          'DINE-IN',
           style: TextStyle(
             fontSize: 25,
             color: Colors.black,
@@ -41,72 +39,45 @@ class CartScreen extends StatelessWidget {
             CartItem(),
             CartItem(),
             SizedBox(height: 21.0),
-            Spacer(),
+            Divider(),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: [
-                    Text(
-                      'Total Price',
-                      style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '\$300',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CODScreen()),
-                    );
-                  },
-                  color: Colors.teal,
-                  height: 50,
-                  minWidth: 110,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Text(
-                    "COD",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                Text(
+                  "Total",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DineInScreen()),
-                    );
-                  },
-                  height: 50,
-                  minWidth: 110,
-                  color: Colors.cyan[900],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Text(
-                    "Dine-in",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                Text(
+                  "\$150",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 4.0),
+            Divider(),
+            Spacer(),
+            MaterialButton(
+              onPressed: () {},
+              color: Colors.teal,
+              height: 50.0,
+              minWidth: double.infinity,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Text(
+                "CHECKOUT",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),

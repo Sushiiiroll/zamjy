@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../category-innerscreens/solomeals.dart';
+
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget(
       {Key? key,
@@ -15,7 +17,10 @@ class CategoriesWidget extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
-        print('Category Pressed');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SoloMeals()),
+        );
       },
       child: Container(
         decoration: BoxDecoration(

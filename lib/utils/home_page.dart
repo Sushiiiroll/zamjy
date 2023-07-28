@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:zamjy/Widgets/bestdeals.dart';
 import 'package:zamjy/utils/data_builder.dart';
 import 'package:zamjy/utils/images.dart';
 
-import 'Widgets/best_deals_widget.dart';
+import '../Widgets/best_deals_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
               children: [
@@ -45,7 +46,10 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          _buildGridView()
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: _buildGridView(),
+          )
         ],
       ),
     );
@@ -54,41 +58,43 @@ class _HomePageState extends State<HomePage> {
   SizedBox _buildGridView() {
     return SizedBox(
       height: Get.height / 2.2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              childAspectRatio: 3 / 3,
-              crossAxisSpacing: 50,
-              mainAxisSpacing: 40),
-          itemCount: allproducts.length,
-          itemBuilder: (context, index) {
-            return _buildProductLength(index);
-          },
-        ),
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 3 / 3,
+            crossAxisSpacing: 50,
+            mainAxisSpacing: 40),
+        itemCount: allproducts.length,
+        itemBuilder: (context, index) {
+          return _buildProductLength(index);
+        },
       ),
     );
   }
 
-  Container _buildProductLength(int index) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-              side:
-                  // ignore: use_full_hex_values_for_flutter_colors
-                  const BorderSide(color: Color(0xffb9b1b18f)))),
-      child: Column(
-        children: [
-          allproducts[index].products,
-          _buildProducts(index),
-          _buildStarRating(index),
-          _buildPriceProduct(index),
-        ],
+  InkWell _buildProductLength(int index) {
+    return InkWell(
+      child: Container(
+        alignment: Alignment.center,
+        decoration: ShapeDecoration(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side:
+                    // ignore: use_full_hex_values_for_flutter_colors
+                    const BorderSide(color: Color(0xffb9b1b18f)))),
+        child: Column(
+          children: [
+            allproducts[index].products,
+            _buildProducts(index),
+            _buildStarRating(index),
+            _buildPriceProduct(index),
+          ],
+        ),
       ),
+      onTap: () {
+        Navigator.pushNamed(context, "productDetails");
+      },
     );
   }
 
@@ -131,10 +137,10 @@ class _HomePageState extends State<HomePage> {
     return SizedBox(
       height: 210,
       child: ListView.builder(
-          itemCount: 5,
+          itemCount: bestdeals.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return const BestDealsWidget();
+            return BestDealsWidget(bestdeals: bestdeals[index]);
           }),
     );
   }
@@ -153,7 +159,12 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.only(left: 177),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BestDeals()),
+                );
+              },
               child: const Text(
                 "See All",
                 style: TextStyle(

@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:zamjy/utils/data_builder.dart';
 
 class BestDealsWidget extends StatefulWidget {
-  const BestDealsWidget({super.key});
+  BestDealsData bestdeals;
+  BestDealsWidget({required this.bestdeals, super.key});
 
   @override
   State<BestDealsWidget> createState() => _BestDealsWidgetState();
@@ -13,70 +15,51 @@ class _BestDealsWidgetState extends State<BestDealsWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Material(
-        color: Colors.grey.withOpacity(0.9),
-        borderRadius: BorderRadius.circular(12),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(12),
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/combo_meal.png',
-                      height: 100,
-                      width: 125,
-                      fit: BoxFit.fill,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: const Text(
-                          "Combo A",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "₱200",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: const Icon(
-                              CupertinoIcons.cart_badge_plus,
-                              size: 27,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+      child: InkWell(
+        child: Container(
+          alignment: Alignment.center,
+          decoration: ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: Colors.grey.withOpacity(0.3)))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(widget.bestdeals.bestDealsImages,
+                  height: 100, width: 150),
+              const SizedBox(height: 5),
+              Text(
+                widget.bestdeals.bestDealsTitle,
+                style:
+                    const TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 2),
+              RatingBarIndicator(
+                rating: widget.bestdeals.bestDealsRating,
+                itemCount: 5,
+                itemSize: 20,
+                itemBuilder: (context, index) {
+                  return const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  );
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("₱${widget.bestdeals.bestDealsPrice.toStringAsFixed(2)}",
+                      style: const TextStyle(
+                          fontSize: 19, fontWeight: FontWeight.w600)),
+                ],
+              )
+            ],
           ),
         ),
+        onTap: () {
+          Navigator.pushNamed(context, "productDetails");
+        },
       ),
     );
   }

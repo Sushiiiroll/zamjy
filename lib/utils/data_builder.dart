@@ -56,3 +56,29 @@ List<AllProducts> allproducts = [
       ratings: 3.0,
       priceProducts: 95.0),
 ];
+
+class BestDealsData {
+  final String bestDealsImages;
+  final String bestDealsTitle;
+  final double bestDealsPrice;
+  final double bestDealsRating;
+
+  const BestDealsData(
+      {required this.bestDealsImages,
+      required this.bestDealsTitle,
+      required this.bestDealsPrice,
+      required this.bestDealsRating});
+}
+
+List<BestDealsData> bestdeals = [
+  BestDealsData(
+      bestDealsImages: Assets.comboA,
+      bestDealsTitle: "Combo A",
+      bestDealsPrice: 200.0,
+      bestDealsRating: 4.0),
+  BestDealsData(
+      bestDealsImages: Assets.comboB,
+      bestDealsTitle: "Combo B",
+      bestDealsPrice: 220.0,
+      bestDealsRating: 5.0)
+];

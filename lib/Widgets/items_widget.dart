@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ItemsWidget extends StatelessWidget {
+  const ItemsWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -10,8 +12,8 @@ class ItemsWidget extends StatelessWidget {
       children: [
         //for(int i=1; i<5; i++)
         Container(
-          padding: EdgeInsets.symmetric(),
-          margin: EdgeInsets.symmetric(),
+          padding: const EdgeInsets.symmetric(),
+          margin: const EdgeInsets.symmetric(),
           decoration: BoxDecoration(color: Colors.grey, boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.4),
