@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -86,7 +85,7 @@ class _MyAccountScreenState extends State<ChangePassScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextFormField(
-        onChanged: (value) => setState(() => this.password = value),
+        onChanged: (value) => setState(() => password = value),
         controller: retypeController,
         validator: (value) {
           if (value != _buildNewPassword()) return 'Not Match';
@@ -98,8 +97,8 @@ class _MyAccountScreenState extends State<ChangePassScreen> {
             //errorText: 'Password is not match',
             suffixIcon: IconButton(
               icon: isPasswordVisible
-                  ? Icon(Icons.visibility_off)
-                  : Icon(Icons.visibility),
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility),
               onPressed: () =>
                   setState(() => isPasswordVisible = !isPasswordVisible),
             ),
@@ -137,8 +136,8 @@ class _MyAccountScreenState extends State<ChangePassScreen> {
         decoration: InputDecoration(
             suffixIcon: IconButton(
               icon: isNewPasswordVisible
-                  ? Icon(Icons.visibility_off)
-                  : Icon(Icons.visibility),
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility),
               onPressed: () =>
                   setState(() => isNewPasswordVisible = !isNewPasswordVisible),
             ),
@@ -186,8 +185,8 @@ class _MyAccountScreenState extends State<ChangePassScreen> {
         decoration: InputDecoration(
             suffixIcon: IconButton(
               icon: isOldPasswordVisible
-                  ? Icon(Icons.visibility_off)
-                  : Icon(Icons.visibility),
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility),
               onPressed: () =>
                   setState(() => isOldPasswordVisible = !isOldPasswordVisible),
             ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zamjy/btm_bar.dart';
-import 'package:zamjy/login_page/log_in_page.dart';
-
 import 'product_details.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const GetMaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,14 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
       routes: {
-        "/": (context) => BottomBarScreen(),
-        "productDetails": (context) => ProductDetailScreen(),
+        "/": (context) => const BottomBarScreen(),
+        "productDetails": (context) => const ProductDetailScreen(),
       },
     );
   }

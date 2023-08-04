@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:zamjy/Widgets/bestdeals.dart';
+import 'package:zamjy/utils/cart_controller.dart';
+import 'package:zamjy/utils/cart_model.dart';
 import 'package:zamjy/utils/data_builder.dart';
 import 'package:zamjy/utils/images.dart';
-
 import '../Widgets/best_deals_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final cartController = Get.put(CartController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
               children: [
@@ -127,7 +130,12 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("₱${allproducts[index].priceProducts.toStringAsFixed(2)}"),
-          GestureDetector(onTap: () {}, child: Image.asset(Assets.cart))
+          GestureDetector(
+            onTap: () {
+              cartController.addProduct(Cart.cart[index]);
+            },
+            child: Image.asset(Assets.cart),
+          ),
         ],
       ),
     );

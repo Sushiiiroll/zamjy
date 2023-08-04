@@ -53,9 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       "Welcome!",
                       style: TextStyle(
@@ -154,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
         keyboardType: TextInputType.name,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.lock),
+            prefixIcon: const Icon(Icons.lock),
             suffixIcon: IconButton(
               icon: isPasswordVisible
                   ? const Icon(Icons.visibility_off)

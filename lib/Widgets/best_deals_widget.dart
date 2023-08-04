@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:zamjy/utils/data_builder.dart';
 
+// ignore: must_be_immutable
 class BestDealsWidget extends StatefulWidget {
   BestDealsData bestdeals;
   BestDealsWidget({required this.bestdeals, super.key});

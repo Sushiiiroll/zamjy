@@ -181,7 +181,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 Container(
                   height: 11,
                 ),
-                Column(
+                const Column(
                   children: [
                     Text(
                       "GCASH No: 09123478993",

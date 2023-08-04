@@ -1,10 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'package:zamjy/utils/colors.dart';
 
 class ViewReservationScreen extends StatefulWidget {
   const ViewReservationScreen({Key? key}) : super(key: key);
@@ -39,8 +35,8 @@ class _ViewReservationScreenState extends State<ViewReservationScreen> {
             height: 110,
             width: double.infinity,
             color: Colors.grey,
-            child: Column(
-              children: const [
+            child: const Column(
+              children: [
                 Padding(
                   padding: EdgeInsets.all(5),
                   child: Text(

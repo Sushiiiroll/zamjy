@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:zamjy/cart.dart';
 import 'package:zamjy/categories.dart';
 
 import 'package:zamjy/reservation.dart';
 import 'package:zamjy/user.dart';
 import 'package:zamjy/utils/home_page.dart';
+
+import 'cart.dart';
 
 class BottomBarScreen extends StatefulWidget {
   const BottomBarScreen({Key? key}) : super(key: key);
@@ -17,10 +18,10 @@ class BottomBarScreen extends StatefulWidget {
 class _BottomBarScreenState extends State<BottomBarScreen> {
   int _selectedIndex = 0;
   final List _pages = [
-    HomePage(),
+    const HomePage(),
     const ReservationScreen(),
     CategoriesScreen(),
-    const CartScreen(),
+    CartScreen(),
     const UserScreen(),
   ];
   void _selectedPage(int index) {
