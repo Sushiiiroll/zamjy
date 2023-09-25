@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zamjy/login_page/log_in_page.dart';
 
 import 'package:zamjy/utils/colors.dart';
 
@@ -55,9 +54,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       "Create Account",
                       style: TextStyle(
@@ -131,7 +130,9 @@ class _SignupScreenState extends State<SignupScreen> {
               ],
             ),
           ],
-        )));
+          )
+        )
+    );
   }
 
   Padding _buildRetypePassword() {
@@ -142,13 +143,13 @@ class _SignupScreenState extends State<SignupScreen> {
         keyboardType: TextInputType.name,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.lock),
+            prefixIcon: const Icon(Icons.lock),
             suffixIcon: IconButton(
               icon: isRetypePasswordVisible
                   ? const Icon(Icons.visibility_off)
                   : const Icon(Icons.visibility),
               onPressed: () => setState(
-                  () => isRetypePasswordVisible = !isRetypePasswordVisible),
+                      () => isRetypePasswordVisible = !isRetypePasswordVisible),
             ),
             fillColor: Colors.grey.shade200,
             filled: true,
@@ -182,7 +183,7 @@ class _SignupScreenState extends State<SignupScreen> {
         keyboardType: TextInputType.name,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.lock),
+            prefixIcon: const Icon(Icons.lock),
             suffixIcon: IconButton(
               icon: isPasswordVisible
                   ? const Icon(Icons.visibility_off)

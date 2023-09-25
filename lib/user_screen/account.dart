@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import 'package:zamjy/utils/colors.dart';
@@ -51,8 +54,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             const SizedBox(height: 50),
             _buildFirstNameText(),
             _buildFirstName(),
-            _buildLastNameText(),
-            _buildLastName(),
+            // _buildLastNameText(),
+            // _buildLastName(),
             _buildEmailText(),
             _buildEmail(),
             _buildGenderText(),
@@ -187,7 +190,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: Text(
-        "First Name",
+        "Full Name",
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
     );

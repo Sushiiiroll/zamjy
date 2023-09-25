@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:zamjy/utils/data_builder.dart';
 
+// ignore: must_be_immutable
 class BestDealsWidget extends StatefulWidget {
   BestDealsData bestdeals;
   BestDealsWidget({required this.bestdeals, super.key});
@@ -11,6 +13,9 @@ class BestDealsWidget extends StatefulWidget {
 }
 
 class _BestDealsWidgetState extends State<BestDealsWidget> {
+  final storage = const FlutterSecureStorage();
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -57,8 +62,12 @@ class _BestDealsWidgetState extends State<BestDealsWidget> {
             ],
           ),
         ),
-        onTap: () {
+        onTap: () async {
+          // final user = await storage.read(key: "auth");
           Navigator.pushNamed(context, "productDetails");
+          // print("HELLO HAHAHA SAKPAN KANG YAWAA KA");
+          // final orderBy = await storage.read(key: key)
+          // print(widget.bestdeals.bestDealsImages);
         },
       ),
     );

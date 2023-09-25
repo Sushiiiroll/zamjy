@@ -1,26 +1,34 @@
-import 'dart:ui';
-
+// ignore: file_names
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 
-class ProductAppBar extends StatelessWidget {
+class ProductAppBar extends StatefulWidget {
+  const ProductAppBar({super.key});
+
+  @override
+  State<ProductAppBar> createState() => _ProductAppBarState();
+}
+
+class _ProductAppBarState extends State<ProductAppBar> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
       child: Row(
         children: [
           InkWell(
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               size: 30,
               color: Colors.grey,
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text(
               "Product",
@@ -31,11 +39,36 @@ class ProductAppBar extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
-          Icon(
-            EvaIcons.shoppingCart,
-            size: 30,
-            color: Colors.black87,
+          const Spacer(),
+          badges.Badge(
+            position: badges.BadgePosition.topEnd(top: -10, end: -12),
+            showBadge: true,
+            ignorePointer: false,
+            onTap: () {},
+            badgeContent: const Text(
+              '0',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 10,
+              ),
+            ),
+            badgeAnimation: const badges.BadgeAnimation.rotation(
+              animationDuration: Duration(milliseconds: 300),
+              loopAnimation: false,
+            ),
+            badgeStyle: const badges.BadgeStyle(
+              shape: badges.BadgeShape.circle,
+              badgeColor: Colors.teal,
+              padding: EdgeInsets.all(5),
+            ),
+            child: GestureDetector(
+              onTap: (() {}),
+              child: const Icon(
+                EvaIcons.shoppingCart,
+                size: 30,
+                color: Colors.black87,
+              ),
+            ),
           ),
         ],
       ),

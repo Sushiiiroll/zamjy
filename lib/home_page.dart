@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'Widgets/best_deals_widget.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -84,7 +82,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               children: [

@@ -38,9 +38,9 @@ class CODScreen extends StatelessWidget {
             const CartItem(),
             const SizedBox(height: 21.0),
             const Divider(),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   "Total",
                   style: TextStyle(
@@ -58,9 +58,9 @@ class CODScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 4.0),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   "Delivery charge",
                   style: TextStyle(
@@ -78,9 +78,9 @@ class CODScreen extends StatelessWidget {
               ],
             ),
             const Divider(),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   "Sub Total",
                   style: TextStyle(
@@ -162,9 +162,9 @@ class CartItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
+                const SizedBox(
                   width: 100.0,
-                  child: const Text(
+                  child: Text(
                     "Combo Meal",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

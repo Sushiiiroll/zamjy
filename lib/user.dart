@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:zamjy/service/initialize.dart';
 import 'package:zamjy/user_screen/account.dart';
 import 'package:zamjy/user_screen/changeaddress.dart';
 import 'package:zamjy/user_screen/changepass.dart';
@@ -13,8 +15,11 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Initialize>(context);
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -139,7 +144,9 @@ class _UserScreenState extends State<UserScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  await provider.removeUserStorage();
+                },
               ),
             ],
           ),

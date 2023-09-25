@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -26,21 +25,21 @@ class DineInScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            const Text(
               "Orders",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 21,
               ),
             ),
-            SizedBox(height: 18.0),
-            CartItem(),
-            CartItem(),
-            CartItem(),
-            CartItem(),
-            SizedBox(height: 21.0),
-            Divider(),
-            Row(
+            const SizedBox(height: 18.0),
+            const CartItem(),
+            const CartItem(),
+            const CartItem(),
+            const CartItem(),
+            const SizedBox(height: 21.0),
+            const Divider(),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -59,9 +58,9 @@ class DineInScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 4.0),
-            Divider(),
-            Spacer(),
+            const SizedBox(height: 4.0),
+            const Divider(),
+            const Spacer(),
             MaterialButton(
               onPressed: () {},
               color: Colors.teal,
@@ -70,7 +69,7 @@ class DineInScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Text(
+              child: const Text(
                 "CHECKOUT",
                 style: TextStyle(
                   color: Colors.white,
@@ -95,7 +94,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: EdgeInsets.symmetric(vertical: 4.0),
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
           Container(
@@ -110,7 +109,7 @@ class CartItem extends StatelessWidget {
                 width: 60.0,
                 height: 60.0,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     fit: BoxFit.scaleDown,
                     image: NetworkImage(
                       'assets/images/combo_meal.png',
@@ -121,12 +120,12 @@ class CartItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 12.0),
+          const SizedBox(width: 12.0),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
+                const SizedBox(
                   width: 100.0,
                   child: Text(
                     "Combo Meal",
@@ -135,7 +134,7 @@ class CartItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Row(
                   children: <Widget>[
                     Container(
@@ -145,14 +144,14 @@ class CartItem extends StatelessWidget {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(4.0),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.remove,
                         color: Colors.white,
                         size: 15.0,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
                         "1",
                         style: TextStyle(
@@ -168,14 +167,14 @@ class CartItem extends StatelessWidget {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(4.0),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.add,
                         color: Colors.white,
                         size: 15.0,
                       ),
                     ),
-                    Spacer(),
-                    Text(
+                    const Spacer(),
+                    const Text(
                       "\$150",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

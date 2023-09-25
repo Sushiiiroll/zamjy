@@ -1,8 +1,13 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:zamjy/service/Reservation.service.dart';
+
 
 class ReservationScreen extends StatefulWidget {
   const ReservationScreen({Key? key}) : super(key: key);
@@ -12,6 +17,7 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
+  final storage = const FlutterSecureStorage();
   final numberController = TextEditingController();
   final receiptController = TextEditingController();
   final TextEditingController dateinput = TextEditingController();
@@ -181,7 +187,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 Container(
                   height: 11,
                 ),
-                Column(
+                const Column(
                   children: [
                     Text(
                       "GCASH No: 09123478993",
@@ -244,7 +250,37 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    final user = await storage.read(key: "auth");
+
+                    if (user!.isNotEmpty) {
+                      final totalGuest = numberController.value.text;
+                      final receipt = receiptController.value.text;
+                      final timeInput = timeinput.value.text;
+                      final dateInput = dateinput.value.text;
+                      final receivedBy = jsonDecode(user);
+
+                      final response = await createReservations(totalGuest.toString(), dateInput.toString(), timeInput.toString(), receipt.toString(), receivedBy['id'].toString());
+
+                      if (response.bodyBytes.length > 0) {
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Reservations'),
+                              content: const Text('Reservations Done'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                        );
+                      }
+
+                      print(response.body);
+                    }
+                  },
                 ),
               ],
             ),
