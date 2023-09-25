@@ -5,7 +5,6 @@ import 'package:zamjy/cart_option/dine_in.dart';
 import 'package:zamjy/utils/cart_controller.dart';
 
 class CartScreen extends StatefulWidget {
-  final CartController controller = Get.find();
 
   CartScreen({Key? key}) : super(key: key);
 
@@ -14,6 +13,9 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  // final controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,96 +32,97 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
       ),
-      body: SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                "Orders",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 21,
-                ),
-              ),
-              const SizedBox(height: 18.0),
-              ListView.builder(
-                  itemCount: ,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CartItem();
-                  }),
-              const SizedBox(height: 21.0),
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Column(
-                    children: [
-                      Text(
-                        'Total Price',
-                        style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        '\$300',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CODScreen()),
-                      );
-                    },
-                    color: Colors.teal,
-                    height: 50,
-                    minWidth: 110,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: const Text(
-                      "COD",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DineInScreen()),
-                      );
-                    },
-                    height: 50,
-                    minWidth: 110,
-                    color: Colors.cyan[900],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: const Text(
-                      "Dine-in",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+      body: const SizedBox(
+        child: Text("UNDER DEVELOPMENT"),
+        // child: Padding(
+        //   padding: const EdgeInsets.all(16.0),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: <Widget>[
+        //       const Text(
+        //         "Orders",
+        //         style: TextStyle(
+        //           fontWeight: FontWeight.bold,
+        //           fontSize: 21,
+        //         ),
+        //       ),
+        //       const SizedBox(height: 18.0),
+        //       ListView.builder(
+        //           itemCount: 10,
+        //           itemBuilder: (BuildContext context, int index) {
+        //             return CartItem();
+        //           }),
+        //       const SizedBox(height: 21.0),
+        //       const Spacer(),
+        //       Row(
+        //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //         children: [
+        //           const Column(
+        //             children: [
+        //               Text(
+        //                 'Total Price',
+        //                 style: TextStyle(
+        //                   fontSize: 19,
+        //                   fontWeight: FontWeight.bold,
+        //                 ),
+        //               ),
+        //               Text(
+        //                 '\$300',
+        //                 style: TextStyle(
+        //                   fontSize: 16,
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //           MaterialButton(
+        //             onPressed: () {
+        //               Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => const CODScreen()),
+        //               );
+        //             },
+        //             color: Colors.teal,
+        //             height: 50,
+        //             minWidth: 110,
+        //             shape: RoundedRectangleBorder(
+        //               borderRadius: BorderRadius.circular(10.0),
+        //             ),
+        //             child: const Text(
+        //               "COD",
+        //               style: TextStyle(
+        //                 color: Colors.white,
+        //                 fontWeight: FontWeight.bold,
+        //               ),
+        //             ),
+        //           ),
+        //           MaterialButton(
+        //             onPressed: () {
+        //               Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => const DineInScreen()),
+        //               );
+        //             },
+        //             height: 50,
+        //             minWidth: 110,
+        //             color: Colors.cyan[900],
+        //             shape: RoundedRectangleBorder(
+        //               borderRadius: BorderRadius.circular(10.0),
+        //             ),
+        //             child: const Text(
+        //               "Dine-in",
+        //               style: TextStyle(
+        //                 color: Colors.white,
+        //                 fontWeight: FontWeight.bold,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ),
     );
   }
@@ -198,11 +201,11 @@ class _CartItemState extends State<CartItem> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
                         "123",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),

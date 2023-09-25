@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
           Text("₱${allproducts[index].priceProducts.toStringAsFixed(2)}"),
           GestureDetector(
             onTap: () {
-              cartController.addProduct(Cart.cart[index]);
+              // cartController.addProduct(Cart.cart[index]);
             },
             child: Image.asset(Assets.cart),
           ),

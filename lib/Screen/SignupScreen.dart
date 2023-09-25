@@ -1,18 +1,19 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:localstorage/localstorage.dart';
+import 'package:zamjy/service/Auth.service.dart';
 import 'package:zamjy/utils/colors.dart';
 
+
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passController = TextEditingController();
@@ -35,102 +36,113 @@ class _SignupScreenState extends State<SignupScreen> {
         backgroundColor: Colors.grey,
         body: SingleChildScrollView(
             child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 25,
-                ),
-                const Align(
-                  alignment: Alignment.center,
-                ),
-                Image.asset(
-                  "assets/images/Applogo.png",
-                  height: 95,
-                  width: 95,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "Create Account",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    const Align(
+                      alignment: Alignment.center,
+                    ),
+                    Image.asset(
+                      "assets/images/Applogo.png",
+                      height: 95,
+                      width: 95,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Create Account",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                _buildNameText(),
+                _buildName(),
+                _buildEmailText(),
+                _buildEmail(),
+                _buildPasswordText(),
+                _buildPassword(),
+                _buildRetypePasswordText(),
+                _buildRetypePassword(),
+                const SizedBox(height: 50),
+                Center(
+                  child: SizedBox(
+                    height: Get.height / 15,
+                    width: Get.width / 2.5,
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          backgroundColor: ColorPalette.elevatedButtonColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5))),
+                      onPressed: () async {
+
+                        final fullName = nameController.value.text;
+                        final email = emailController.value.text;
+                        final password = passController.text;
+
+                        final registeredUser = await createUser(fullName, email, password);
+
+                        if (registeredUser.statusCode == 201) {
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      child: const Text(
+                        "SIGN UP",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 95,
+                    ),
+                    const Text(
+                      "Already have an account?",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Log In",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.teal,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ],
-            ),
-            const SizedBox(height: 30),
-            _buildNameText(),
-            _buildName(),
-            _buildEmailText(),
-            _buildEmail(),
-            _buildPasswordText(),
-            _buildPassword(),
-            _buildRetypePasswordText(),
-            _buildRetypePassword(),
-            const SizedBox(height: 50),
-            Center(
-              child: SizedBox(
-                height: Get.height / 15,
-                width: Get.width / 2.5,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      backgroundColor: ColorPalette.elevatedButtonColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
-                  child: const Text(
-                    "SIGN UP",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 95,
-                ),
-                const Text(
-                  "Already have an account?",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text(
-                    "Log In",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.teal,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-          )
+            )
         )
     );
   }
