@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +22,11 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     final provider = Provider.of<Initialize>(context);
 
+    final decodeUser = jsonDecode(provider.user);
+    final fullName = decodeUser['fullName'];
+    final userEmail = decodeUser['email'];
+    // print(decodeUser['fullName']);
+
     return Scaffold(
       body: Center(
         child: Padding(
@@ -28,17 +35,17 @@ class _UserScreenState extends State<UserScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RichText(
-                text: const TextSpan(
+                text: TextSpan(
                     text: 'Hi, ',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.blueGrey,
                       fontSize: 27,
                       fontWeight: FontWeight.bold,
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '@username',
-                        style: TextStyle(
+                        text: "$fullName",
+                        style: const TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -49,9 +56,9 @@ class _UserScreenState extends State<UserScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                'email@gmail.com',
-                style: TextStyle(
+              Text(
+                "$userEmail",
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.black,
                 ),

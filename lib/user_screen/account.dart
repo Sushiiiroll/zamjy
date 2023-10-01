@@ -5,6 +5,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:zamjy/service/Auth.service.dart';
+import 'package:zamjy/service/initialize.dart';
 
 import 'package:zamjy/utils/colors.dart';
 
@@ -18,21 +21,32 @@ class MyAccountScreen extends StatefulWidget {
 }
 
 class _MyAccountScreenState extends State<MyAccountScreen> {
-  final fnameController = TextEditingController();
-  final lnameController = TextEditingController();
-  final emailController = TextEditingController();
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController lnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   bool isTap = true;
   String? gender;
   @override
   void initState() {
     super.initState();
-
     fnameController.addListener(() => setState(() {}));
     lnameController.addListener(() => setState(() {}));
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Initialize>(context);
+    const storage = FlutterSecureStorage();
+    final decodeUser = jsonDecode(provider.user);
+    int userId = decodeUser['id'];
+    String fullName = decodeUser['fullName'];
+    String email = decodeUser['email'];
+
+
+    fnameController = TextEditingController(text: fullName);
+    emailController = TextEditingController(text: email);
+
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey,
@@ -47,40 +61,56 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 50),
-            _buildFirstNameText(),
-            _buildFirstName(),
-            // _buildLastNameText(),
-            // _buildLastName(),
-            _buildEmailText(),
-            _buildEmail(),
-            _buildGenderText(),
-            _buildGenderOption(),
-            const SizedBox(height: 50),
-            Center(
-                child: SizedBox(
-              height: Get.height / 15,
-              width: Get.width / 2.5,
-              child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      backgroundColor: ColorPalette.elevatedButtonColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
-                  child: const Text(
-                    "SAVE",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  )),
-            ))
-          ],
-        )));
+        body: Consumer(
+          builder: (context, value, child) => SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 50),
+                  _buildFirstNameText(),
+                  _buildFirstName(),
+                  // _buildLastNameText(),
+                  // _buildLastName(),
+                  _buildEmailText(),
+                  _buildEmail(),
+                  _buildGenderText(),
+                  _buildGenderOption(),
+                  const SizedBox(height: 50),
+                  Center(
+                      child: SizedBox(
+                        height: Get.height / 15,
+                        width: Get.width / 2.5,
+                        child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                                backgroundColor: ColorPalette.elevatedButtonColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5))),
+                            onPressed: () async {
+                              String fname = fnameController.value.text;
+                              String email = emailController.value.text;
+
+                              final response = await updateUser(fname, email, userId);
+
+                              if (response.statusCode == 201) {
+                                await storage.deleteAll();
+                                await storage.write(key: "auth", value: response.body);
+                                provider.updateUserNotifier();
+                              }
+                            },
+                            child: const Text(
+                              "SAVE",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            )),
+                      )
+                  )
+                ],
+              )
+          ),
+        )
+    );
   }
 
   Row _buildGenderOption() {

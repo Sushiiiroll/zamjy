@@ -38,4 +38,9 @@ class Initialize with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  updateUserNotifier() {
+    _getUserFromStorage();
+    notifyListeners();
+  }
 }
