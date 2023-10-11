@@ -2,13 +2,21 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<http.Response> createReservations(String totalGuests, String date, String time, String receipt, String userId) {
+Future<http.Response> createReservations(
+    int pax,
+    String name,
+    String contact_num,
+    String date,
+    String time,
+    double fee
+    ) {
   final encodeToJson = jsonEncode({
-    'totalGuest': totalGuests.toString(),
-    'reservedBy': int.parse(userId.toString()),
-    'time': time.toString(),
-    'date': date.toString(),
-    'gcashReceipt': receipt.toString()
+    "pax": pax,
+    "name": name,
+    "contact_num": contact_num,
+    "date": date,
+    "time": time,
+    "fee": fee
   });
 
   print(encodeToJson);

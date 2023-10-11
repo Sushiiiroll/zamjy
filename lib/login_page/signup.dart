@@ -13,14 +13,18 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final nameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final passController = TextEditingController();
   final retypepassController = TextEditingController();
   String password = '';
   bool isPasswordVisible = false;
   bool isRetypePasswordVisible = false;
-  bool isTap = true;
+  bool firstNameIsTap = true;
+  bool lastNameIsTap = true;
+  bool passwordIsTap = true;
+  bool emailIsTap = true;
 
   @override
   void initState() {
@@ -73,8 +77,10 @@ class _SignupScreenState extends State<SignupScreen> {
               ],
             ),
             const SizedBox(height: 30),
-            _buildNameText(),
-            _buildName(),
+            _buildFirstNameText(),
+            _buildFirstName(),
+            _buildLastNameText(),
+            _buildLastName(),
             _buildEmailText(),
             _buildEmail(),
             _buildPasswordText(),
@@ -156,7 +162,7 @@ class _SignupScreenState extends State<SignupScreen> {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
-                    color: isTap != true ? Colors.grey : Colors.black)),
+                    color: passwordIsTap != true ? Colors.grey : Colors.black)),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.grey))),
@@ -196,7 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
-                    color: isTap != true ? Colors.grey : Colors.black)),
+                    color: passwordIsTap != true ? Colors.grey : Colors.black)),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.grey))),
@@ -239,7 +245,7 @@ class _SignupScreenState extends State<SignupScreen> {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
-                    color: isTap != true ? Colors.grey : Colors.black)),
+                    color: emailIsTap != true ? Colors.grey : Colors.black)),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.grey))),
@@ -247,21 +253,21 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Padding _buildNameText() {
+  Padding _buildFirstNameText() {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: Text(
-        "Full Name",
+        "First Name",
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
     );
   }
 
-  Padding _buildName() {
+  Padding _buildFirstName() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextFormField(
-        controller: nameController,
+        controller: firstNameController,
         keyboardType: TextInputType.name,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
@@ -270,7 +276,38 @@ class _SignupScreenState extends State<SignupScreen> {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(
-                    color: isTap != true ? Colors.grey : Colors.black)),
+                    color: firstNameIsTap != true ? Colors.grey : Colors.black)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.grey))),
+      ),
+    );
+  }
+
+  Padding _buildLastNameText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Text(
+        "Last Name",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+
+  Padding _buildLastName() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        controller: lastNameController,
+        keyboardType: TextInputType.name,
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: lastNameIsTap != true ? Colors.grey : Colors.black)),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.grey))),

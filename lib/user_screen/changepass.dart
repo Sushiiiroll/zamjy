@@ -61,7 +61,7 @@ class _MyAccountScreenState extends State<ChangePassScreen> {
 
             final user = jsonDecode(provider.user);
             String getOldPassword = user['password'];
-            int userId = user['id'];
+            int userId = user['account_id'];
 
             return SingleChildScrollView(
                 child: Column(

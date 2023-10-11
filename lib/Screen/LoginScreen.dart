@@ -99,18 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       final password = this.passController.value.text;
 
                       await value.initializeLoginUser(email, password);
-                      // final response = await loginUser(email, password);
-                      //
-                      // if (response.bodyBytes.isNotEmpty) {
-                      //   print(response.body);
-                      //
-                      //   await storage.write(key: "auth", value: response.body);
-                      // }
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       // builder: (context) => const BottomBarScreen()),
-                      // );
                     },
                     child: const Text(
                       "LOGIN",

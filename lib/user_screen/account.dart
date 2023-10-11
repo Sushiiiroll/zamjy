@@ -38,12 +38,15 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
     final provider = Provider.of<Initialize>(context);
     const storage = FlutterSecureStorage();
     final decodeUser = jsonDecode(provider.user);
-    int userId = decodeUser['id'];
-    String fullName = decodeUser['fullName'];
-    String email = decodeUser['email'];
+
+    int userId = decodeUser['account_id'];
+    String firstName = decodeUser['firstname'];
+    String lastName = decodeUser['lastname'];
+    String email = decodeUser['username'];
 
 
-    fnameController = TextEditingController(text: fullName);
+    fnameController = TextEditingController(text: firstName);
+    lnameController = TextEditingController(text: lastName);
     emailController = TextEditingController(text: email);
 
 
@@ -69,8 +72,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                   const SizedBox(height: 50),
                   _buildFirstNameText(),
                   _buildFirstName(),
-                  // _buildLastNameText(),
-                  // _buildLastName(),
+                  _buildLastNameText(),
+                  _buildLastName(),
                   _buildEmailText(),
                   _buildEmail(),
                   _buildGenderText(),
@@ -87,9 +90,14 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                     borderRadius: BorderRadius.circular(5))),
                             onPressed: () async {
                               String fname = fnameController.value.text;
+                              String lname = lnameController.value.text;
                               String email = emailController.value.text;
-
-                              final response = await updateUser(fname, email, userId);
+                              // String fname = fnameController.value.text;
+                              // String email = emailController.value.text;
+                              //
+                              final response = await updateUser(
+                                fname, lname, email, userId
+                              );
 
                               if (response.statusCode == 201) {
                                 await storage.deleteAll();
@@ -220,7 +228,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: Text(
-        "Full Name",
+        "First Name",
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
     );

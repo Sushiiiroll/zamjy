@@ -6,9 +6,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class OrderService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createOrder(data: Prisma.OrderItemCreateInput) {
-    return await this.prisma.orderItem.create({
-      data,
-    });
-  }
+  // async createOrder(data: Prisma.OrderItemCreateInput) {
+  //   return await this.prisma.orderItem.create({
+  //     data,
+  //   });
+  // }
 }

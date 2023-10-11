@@ -23,8 +23,8 @@ class _UserScreenState extends State<UserScreen> {
     final provider = Provider.of<Initialize>(context);
 
     final decodeUser = jsonDecode(provider.user);
-    final fullName = decodeUser['fullName'];
-    final userEmail = decodeUser['email'];
+    final fullName = decodeUser['firstname'];
+    final userEmail = decodeUser['username'];
     // print(decodeUser['fullName']);
 
     return Scaffold(
