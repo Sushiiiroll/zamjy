@@ -10,7 +10,6 @@ class Initialize with ChangeNotifier {
   late dynamic _userAccount = "";
   final dynamic _storage = const FlutterSecureStorage();
 
-
   dynamic get user => _userAccount;
 
   set user(dynamic value) {
@@ -18,10 +17,9 @@ class Initialize with ChangeNotifier {
     notifyListeners();
   }
 
-
   Future<void> _getUserFromStorage() async {
-      user = await _storage.read(key: "auth");
-      notifyListeners();
+    user = await _storage.read(key: "auth");
+    notifyListeners();
   }
 
   Future<void> removeUserStorage() async {

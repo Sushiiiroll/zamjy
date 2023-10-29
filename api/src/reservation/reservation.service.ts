@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, account } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -12,11 +12,11 @@ export class ReservationService {
     });
   }
 
-  async getReservation(data: Partial<account>) {
+  async getReservation(data: { firstname: string; lastname: string }) {
     return await this.prisma.reservation.findMany({
       where: {
         name: {
-          equals: `${data.firstname}, ${data.firstname}`,
+          equals: `${data.firstname}, ${data.lastname}`,
         },
       },
     });

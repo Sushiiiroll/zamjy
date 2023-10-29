@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
-import { account, reservation } from '@prisma/client';
+import { reservation } from '@prisma/client';
 
 @Controller('reservation')
 export class ReservationController {
@@ -14,10 +14,10 @@ export class ReservationController {
     return await this.reservationService.createReservation(request);
   }
 
-  @Get('/view')
+  @Get('/view/:firstname/:lastname')
   async viewReservation(
-    @Body() request: Partial<account>,
+    @Param() data: { firstname: string; lastname: string },
   ): Promise<reservation[]> {
-    return await this.reservationService.getReservation(request);
+    return await this.reservationService.getReservation(data);
   }
 }

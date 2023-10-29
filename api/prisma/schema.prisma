@@ -119,6 +119,7 @@ model walkincustomer {
   customer_id   Int             @id @default(autoincrement())
   name          String          @db.VarChar(200)
   date          DateTime        @default(now()) @db.DateTime(0)
+  archive       Boolean         @default(false)
   sales         sales[]
   walkin_orders walkin_orders[]
 }

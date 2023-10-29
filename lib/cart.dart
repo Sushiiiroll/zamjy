@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:zamjy/cart_option/delivery_screen.dart';
-import 'package:zamjy/cart_option/dine_in.dart';
-import 'package:zamjy/utils/cart_controller.dart';
 
 class CartScreen extends StatefulWidget {
-
   CartScreen({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +8,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   // final controller = Get.find();
 
   @override

@@ -12,7 +12,6 @@ import 'package:zamjy/service/initialize.dart';
 
 // var env = DotEnv(includePlatformEnvironment: true)..load();
 
-
 main() async {
   runApp(const GetMaterialApp(home: MainApp()));
 }
@@ -38,53 +37,50 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // print();
     return Consumer<Initialize>(builder: (context, value, child) {
-      print(value.user);
-
       if (value.user.toString().isNotEmpty && value.user != null) {
-          return Scaffold(
-            body: MaterialApp(
-              title: 'Flutter Demo',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                scaffoldBackgroundColor: Colors.white,
-              ),
-              routes: {
-                "/": (context) => const BottomBarScreen(),
-                "productDetails": (context) => const ProductDetailScreen(),
-              },
+        return Scaffold(
+          body: MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white,
             ),
-          );
+            routes: {
+              "/": (context) => const BottomBarScreen(),
+              "productDetails": (context) => const ProductDetailScreen(),
+            },
+          ),
+        );
       } else {
-          return const LoginScreen();
+        return const LoginScreen();
       }
     });
-   // if (context.watch<Initialize>().user.toString().isNotEmpty) {
-   //   return MaterialApp(
-   //     title: 'Flutter Demo',
-   //     debugShowCheckedModeBanner: false,
-   //     theme: ThemeData(
-   //       scaffoldBackgroundColor: Colors.white,
-   //     ),
-   //     routes: {
-   //       "/": (context) => const BottomBarScreen(),
-   //       "productDetails": (context) => const ProductDetailScreen(),
-   //     },
-   //   );
-   // } else {
-   //   return MaterialApp(
-   //     title: 'Flutter Demo',
-   //     debugShowCheckedModeBanner: false,
-   //     theme: ThemeData(
-   //       scaffoldBackgroundColor: Colors.white,
-   //     ),
-   //     routes: {
-   //       "/": (context) => const LoginScreen(),
-   //       "/signup": (context) => const SignupScreen(),
-   //     },
-   //   );
-   // }
+    // if (context.watch<Initialize>().user.toString().isNotEmpty) {
+    //   return MaterialApp(
+    //     title: 'Flutter Demo',
+    //     debugShowCheckedModeBanner: false,
+    //     theme: ThemeData(
+    //       scaffoldBackgroundColor: Colors.white,
+    //     ),
+    //     routes: {
+    //       "/": (context) => const BottomBarScreen(),
+    //       "productDetails": (context) => const ProductDetailScreen(),
+    //     },
+    //   );
+    // } else {
+    //   return MaterialApp(
+    //     title: 'Flutter Demo',
+    //     debugShowCheckedModeBanner: false,
+    //     theme: ThemeData(
+    //       scaffoldBackgroundColor: Colors.white,
+    //     ),
+    //     routes: {
+    //       "/": (context) => const LoginScreen(),
+    //       "/signup": (context) => const SignupScreen(),
+    //     },
+    //   );
+    // }
   }
 }

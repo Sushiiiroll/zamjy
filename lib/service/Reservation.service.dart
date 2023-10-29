@@ -2,14 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<http.Response> createReservations(
-    int pax,
-    String name,
-    String contact_num,
-    String date,
-    String time,
-    double fee
-    ) {
+Future<http.Response> createReservations(int pax, String name,
+    String contact_num, String date, String time, double fee) {
   final encodeToJson = jsonEncode({
     "pax": pax,
     "name": name,
@@ -22,8 +16,11 @@ Future<http.Response> createReservations(
   print(encodeToJson);
 
   return http.post(Uri.http("10.0.2.2:3000", 'reservation/create'),
-      headers: {
-        "content-type": "application/json"
-      },
-      body: encodeToJson);
+      headers: {"content-type": "application/json"}, body: encodeToJson);
+}
+
+Future<http.Response> getMyReservations(String firstname, String lastname) {
+  return http.get(
+      Uri.http("10.0.2.2:3000", 'reservation/view/$firstname/$lastname'),
+      headers: {"content-type": "application/json"});
 }
