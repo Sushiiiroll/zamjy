@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:zamjy/service/Reservation.service.dart';
+import 'package:provider/provider.dart';
+import 'package:zamjy/service/initialize.dart';
 
 class ViewReservationScreen extends StatefulWidget {
   const ViewReservationScreen({Key? key}) : super(key: key);
@@ -16,6 +18,12 @@ class ViewReservationScreen extends StatefulWidget {
 class _ViewReservationScreenState extends State<ViewReservationScreen> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Initialize>(context);
+    final decodeUser = jsonDecode(provider.user);
+
+    String firstName = decodeUser['firstname'];
+    String lastName = decodeUser['lastname'];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey,
@@ -31,7 +39,7 @@ class _ViewReservationScreenState extends State<ViewReservationScreen> {
         ),
       ),
       body: FutureBuilder(
-        future: getMyReservations("customer1", "customerlastname"),
+        future: getMyReservations(firstName, lastName), // static sht
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final List<dynamic> decodeData = jsonDecode(snapshot.data!.body);
