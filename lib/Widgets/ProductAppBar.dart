@@ -2,6 +2,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:provider/provider.dart';
+import 'package:zamjy/service/initialize.dart';
 
 class ProductAppBar extends StatefulWidget {
   const ProductAppBar({super.key});
@@ -13,6 +15,8 @@ class ProductAppBar extends StatefulWidget {
 class _ProductAppBarState extends State<ProductAppBar> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Initialize>(context);
+
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
@@ -45,9 +49,9 @@ class _ProductAppBarState extends State<ProductAppBar> {
             showBadge: true,
             ignorePointer: false,
             onTap: () {},
-            badgeContent: const Text(
-              '0',
-              style: TextStyle(
+            badgeContent: Text(
+              '${provider.selectedCarts.length}',
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 10,
               ),

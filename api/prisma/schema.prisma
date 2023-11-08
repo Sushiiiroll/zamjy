@@ -48,6 +48,7 @@ model menu {
   description  String   @db.VarChar(255)
   stock        Int
   package      String   @db.VarChar(255)
+  image        String?   @db.VarChar(255)
   date_created DateTime @default(now()) @db.DateTime(0)
 }
 

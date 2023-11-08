@@ -8,9 +8,11 @@ class Initialize with ChangeNotifier {
     _storage;
   }
   late dynamic _userAccount = "";
+  late final List<Map<dynamic, dynamic>> _selectedCarts = [];
   final dynamic _storage = const FlutterSecureStorage();
 
   dynamic get user => _userAccount;
+  List<Map<dynamic, dynamic>> get selectedCarts => _selectedCarts;
 
   set user(dynamic value) {
     _userAccount = value;
@@ -40,5 +42,14 @@ class Initialize with ChangeNotifier {
   updateUserNotifier() {
     _getUserFromStorage();
     notifyListeners();
+  }
+
+  void carts(dynamic data) {
+    _selectedCarts.add(data);
+    notifyListeners();
+  }
+
+  bool isExists(dynamic data) {
+    return _selectedCarts.contains(data) ? true : false;
   }
 }

@@ -1,12 +1,20 @@
 // ignore: file_names
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zamjy/service/initialize.dart';
 
 class ProductBottomBar extends StatelessWidget {
-  const ProductBottomBar({super.key});
+  const ProductBottomBar(
+      {super.key, required this.data, required this.totalPieces});
+
+  final int totalPieces;
+  final Map<dynamic, dynamic>? data;
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<Initialize>(context);
+
     return Container(
       height: 70,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,15 +33,19 @@ class ProductBottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            "₱100",
-            style: TextStyle(
+          Text(
+            "₱${data!['price']}",
+            style: const TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              if (!provider.isExists(data)) {
+                provider.carts(data);
+              }
+            },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
                 const Color(0xFF009688),
@@ -46,9 +58,9 @@ class ProductBottomBar extends StatelessWidget {
               ),
             ),
             icon: const Icon(CupertinoIcons.cart_badge_plus),
-            label: const Text(
-              "Add to Cart",
-              style: TextStyle(
+            label: Text(
+              provider.isExists(data) ? 'Done' : 'Add to Cart',
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,

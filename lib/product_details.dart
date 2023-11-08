@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:zamjy/Widgets/ProductBottomBar.dart';
@@ -31,6 +34,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<dynamic, dynamic> data =
+        ModalRoute.of(context)!.settings.arguments as Map;
+
+    // print(data['image']);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -38,8 +46,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           const ProductAppBar(),
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Image.asset(
-              "assets/images/bibimbap.png",
+            child: Image.network(
+              'http://10.0.2.2:3000/${data['image']}',
               height: 300,
             ),
           ),
@@ -50,14 +58,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 30, bottom: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Product Title",
-                          style: TextStyle(
+                          '${data['menu']}',
+                          style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87),
@@ -71,7 +79,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RatingBar.builder(
-                          initialRating: 5,
+                          initialRating: 3,
                           minRating: 1,
                           direction: Axis.horizontal,
                           itemCount: 5,
@@ -145,11 +153,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 30),
                     child: Text(
-                      "Description of the Product. Description of the Product. Description of the Product. Description of the Product.",
-                      style: TextStyle(
+                      '${data['description']}',
+                      style: const TextStyle(
                         fontSize: 15,
                         color: Colors.black87,
                       ),
@@ -162,7 +170,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const ProductBottomBar(),
+      bottomNavigationBar: ProductBottomBar(data: data, totalPieces: _counter),
     );
   }
 }
